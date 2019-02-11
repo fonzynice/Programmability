@@ -44,3 +44,5 @@ config_parameters.update(operation)
 
 # for key, value in config_parameters.items():
 #     print(key, ':', value)
+cfg = ['config t', 'interface Eth1/1', 'ip address', '10.10.10.1 255.255.255.0', 'no shutdown' ]
+print('\n'.join(cfg))
