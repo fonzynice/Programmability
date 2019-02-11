@@ -26,7 +26,7 @@ for feature, value in config_parameters.items():
     commands_lists.append(comm)
     # print(commands_lists)
 commands_lists.insert(0, 'interface Eth1/1')
-print(commands_lists)
+# print(commands_lists)
 
 #
 
@@ -35,7 +35,7 @@ configurations = ['config t', 'Ethernet 1/1', 'shutdown']
 ip_address = '192.168.2.1'
 
 send = '\n'.join(configurations)
-ping = 'ping {}'.format(ip_address)
+# ping = 'ping {}'.format(ip_address)
 # print(ping)
 
 operation = dict(CPU='10%', Memory='4%')
@@ -44,5 +44,18 @@ config_parameters.update(operation)
 
 # for key, value in config_parameters.items():
 #     print(key, ':', value)
-cfg = ['config t', 'interface Eth1/1', 'ip address', '10.10.10.1 255.255.255.0', 'no shutdown' ]
-print('\n'.join(cfg))
+
+vendors = ['Cisco', 'Arista', 'Juniper', 'HP', 'Cumulus']
+approved_vendors = ['Cisco', 'Juniper']
+
+cfg = ['config t', 'interface Eth1/1', 'ip address', '10.10.10.1 255.0.0.0', 'no shutdown' ]
+cfg_join = '\n'.join(cfg)
+
+
+def send_cfg():
+    for vendor in vendors:
+        if vendor not in approved_vendors:
+            print('Vendor NOT on the approved List: *{}'.format(vendor))
+
+
+send_cfg()
