@@ -58,4 +58,47 @@ def send_cfg():
             print('Vendor NOT on the approved List: *{}'.format(vendor))
 
 
-send_cfg()
+# send_cfg()
+c = []
+for feat, value in commands.items():
+    c.append(feat)
+    # print(feat, value)
+c.insert(0, 'Eth1/1')
+# print(c)
+
+devices = ['switch1', 'switch2', 'switch3']
+vlans = [
+        {'id': '10', 'name': 'USERS'},
+        {'id': '20', 'name': 'VOICE'},
+        {'id': '30', 'name': 'WLAN'}
+        ]
+
+
+def get_command(vlan, name):
+    com_mands = []
+    com_mands.append('vlan'+ vlan)
+    com_mands.append('name: ' + name)
+    return com_mands
+    # print(com_mands)
+
+
+def push_command(devices, com_mands):
+    print('Connecting to device', devices)
+    for cmd in com_mands:
+        print('Sending com_mands', cmd)
+
+
+for vlan in vlans:
+    v_id = vlan.get('id')
+    v_name = vlan.get('name')
+    print('\n')
+    print('Configuring Vlan:', v_id)
+    com_mands = get_command(v_id, v_name)
+    for device in devices:
+        push_command(device, com_mands)
+        print('\n')
+
+
+# get_command(v_id, v_name)
+#
+# push_command(devices, com_mands )
